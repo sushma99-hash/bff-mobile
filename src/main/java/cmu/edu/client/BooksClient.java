@@ -1,8 +1,6 @@
 package cmu.edu.client;
 
 import cmu.edu.ds.Models.Books;
-//import configuration.FeignConfig;
-//import models.Books;
 import cmu.edu.configuration.FeignConfig;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
