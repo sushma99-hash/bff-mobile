@@ -4,6 +4,7 @@ import cmu.edu.client.CustomersClient;
 import cmu.edu.ds.Models.Customer;
 import cmu.edu.errors.CustomFeignException;
 import jakarta.validation.constraints.Email;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +24,8 @@ public class CustomersController {
     public ResponseEntity<Object> addCustomer(@RequestBody Customer customer) {
         try {
             Object result = customersClient.addCustomer(customer);
-            return ResponseEntity.ok(result);
+//            return ResponseEntity.ok(result);
+            return ResponseEntity.status(HttpStatus.CREATED).body(result);
         } catch (CustomFeignException e) {
             return ResponseEntity.status(e.getStatus())
                     .contentType(MediaType.APPLICATION_JSON)

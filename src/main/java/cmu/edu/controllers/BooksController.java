@@ -3,6 +3,7 @@ package cmu.edu.controllers;
 import cmu.edu.client.BooksClient;
 import cmu.edu.ds.Models.Books;
 import cmu.edu.errors.CustomFeignException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +24,8 @@ public class BooksController {
     public ResponseEntity<Object> addBook(@RequestBody Books book) {
         try {
             Object result = booksClient.addBook(book);
-            return ResponseEntity.ok(result);
+//            return ResponseEntity.ok(result);
+            return ResponseEntity.status(HttpStatus.CREATED).body(result);
         } catch (CustomFeignException e) {
             return ResponseEntity.status(e.getStatus())
                     .contentType(MediaType.APPLICATION_JSON)
